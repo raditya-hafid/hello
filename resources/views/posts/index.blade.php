@@ -18,8 +18,8 @@
         <h1>Daftar Postingan Blog</h1>
         @forelse($posts as $post)
             <div class="post">
-                <h2>{{ $post->$title }}</h2>
-                <p>{{ $post->$body }}</p>
+                <h2>{{ $post->title }}</h2>
+                <p>{{ $post->body }}</p>
             </div>
         @empty
             <p>Belum ada Postingan!</p>
