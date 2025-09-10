@@ -18,7 +18,10 @@
         <h1>Daftar Postingan Blog</h1>
         @forelse($posts as $post)
             <div class="post">
-                <h2>{{ $post->title }}</h2>
+                <a href="/posts/{{ $post->id }}">
+                   <h2>{{ $post->title }}</h2> 
+                </a>
+                
                 <p>{{ $post->body }}</p>
             </div>
         @empty
