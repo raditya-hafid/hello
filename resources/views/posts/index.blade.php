@@ -24,6 +24,8 @@
                 </a>
 
                 <p>{{ $post->body }}</p>
+
+                <a href="/posts/{{ $post->id }}}/edit" style="display: inline-block; margin-top: 1rem; margin-left: 1rem;">Edit Postingan</a>
             </div>
         @empty
             <p>Belum ada Postingan !</p>

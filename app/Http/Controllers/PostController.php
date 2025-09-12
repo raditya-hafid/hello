@@ -34,7 +34,7 @@ class PostController extends Controller
         Post::create($validated);
 
         //redirect kembali ke halaman posts
-        return redirect('/posts');
+        return redirect('/');
     }
 
     public function edit(Post $post){
@@ -51,6 +51,12 @@ class PostController extends Controller
         $post -> update($validate);
 
         return redirect('/posts/' . $post->id);
+    }
+
+    public function destroy(Post $post){
+        $post->delete();
+
+        return redirect('/');
     }
 
 
