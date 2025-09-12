@@ -35,8 +35,26 @@ class PostController extends Controller
 
         //redirect kembali ke halaman posts
         return redirect('/posts');
-}
-
     }
+
+    public function edit(Post $post){
+        return view('posts.edit', ['post' => $post]);
+    }
+
+    public function update(Request $request, Post $post){
+        $validate =  $request->validate([
+            'title' => 'required|string|max:255',
+            'body' => 'required|string'
+        ]);
+        
+
+        $post -> update($validate);
+
+        return redirect('/posts/' . $post->id);
+    }
+
+
+
+}
 
     

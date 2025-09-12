@@ -21,6 +21,7 @@
         </div>
         <hr style="margin-top: 2rem; border: none; border-top: 1px solid #eee;">
         <a href="/posts" style="display: inline-block; margin-top: 1rem;">&laquo; Kembali</a>
+        <a href="/posts/{{ $post->id }}}/edit" style="display: inline-block; margin-top: 1rem; margin-left: 1rem;">Edit Postingan</a>
     </div>
     
 </body>
