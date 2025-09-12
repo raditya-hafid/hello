@@ -1,20 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post</title>
-    <style>
-        body { font-family: sans-serif; background-color: #f4f4f9; color: #333; padding: 2rem; }
-        .container { max-width: 800px; margin: auto; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        h1 { border-bottom: 2px solid #eee; padding-bottom: 1rem; margin-bottom: 1rem; }
-        .post { border-bottom: 1px solid #eee; padding: 1rem 0; }
-        .post:last-child { border-bottom: none; }
-        h2 { margin: 0 0 0.5rem 0; }
-    </style>
-</head>
-<body>
-    <div class="container">
+@extends('layouts.app')
+@section('title', 'Daftar Postingan Blog')
+
+@section('content')
         <h1>Daftar Postingan Blog</h1>
         @forelse($posts as $post)
             <div class="post">
@@ -23,13 +10,22 @@
                    <h2>{{ $post->title }}</h2> 
                 </a>
 
-                <p>{{ $post->body }}</p>
+                <p>{{ Str::limit($post->body, 100) }}</p>
 
                 <a href="/posts/{{ $post->id }}}/edit" style="display: inline-block; margin-top: 1rem; margin-left: 1rem;">Edit Postingan</a>
+                <form action="/posts/{{ $post->id }}" method="POST" style="display: inline-block; margin-left: 1rem;">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" style="background-color: #dc3545; color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer;" onclick="return confirm('Hapus Postingan Ini?')">
+                        Hapus
+                    </button>
+                </form>
             </div>
         @empty
             <p>Belum ada Postingan !</p>
         @endforelse
-    </div>
-</body>
-</html>
+    
+@endsection
+
+    
+        
