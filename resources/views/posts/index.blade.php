@@ -7,8 +7,9 @@
             <div class="post">
 
                 <a href="/posts/{{ $post->id }}">
-                   <h2>{{ $post->title }}</h2> 
+                   <h2>{{ $post->title }}</h2>
                 </a>
+                <p style="font-size: 0.8rem; color: #666;"> @.{{ $post->user->name }}</p>
 
                 <p>{{ Str::limit($post->body, 100) }}</p>
 

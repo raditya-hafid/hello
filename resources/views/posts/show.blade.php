@@ -3,6 +3,7 @@
 
 @section('content')
     <h1>{{ $post->title }}</h1>
+    <p>{{ $post->user->name }}</p>
     <div class="content">
         <p>{{ $post->body }}</p>
     </div>
