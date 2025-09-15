@@ -34,7 +34,7 @@ class PostController extends Controller
         Post::create($validated);
 
         //redirect kembali ke halaman posts
-        return redirect('/');
+        return redirect('/')->with('Success', 'Postingan baru berhasil dibuat');
     }
 
     public function edit(Post $post){
@@ -50,13 +50,13 @@ class PostController extends Controller
 
         $post -> update($validate);
 
-        return redirect('/posts/' . $post->id);
+        return redirect('/posts/' . $post->id)->with('Success', 'Postingan berhasil diubah');
     }
 
     public function destroy(Post $post){
         $post->delete();
 
-        return redirect('/');
+        return redirect('/')->with('Success', 'Postingan berhasil dihapus');
     }
 
 

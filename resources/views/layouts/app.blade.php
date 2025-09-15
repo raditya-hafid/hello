@@ -13,10 +13,24 @@
         .post { border-bottom: 1px solid #eee; padding: 1rem 0; }
         .post:last-child { border-bottom: none; }
         h1, h2 { margin: 0 0 1rem 0; }
+        .alert-success {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        @if (session('Success'))
+            <div class="alert-success">
+                {{ session('Success') }}
+            </div>
+        @endif
+
         @yield('content')
     </div>
 </body>
