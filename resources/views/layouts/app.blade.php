@@ -25,11 +25,33 @@
 </head>
 <body>
     <div class="container">
+        
+
+        <nav style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <div>
+                <a href="/">Home</a>   
+            </div> 
+            <div>
+                @auth
+                    <span>Hallo, {{ auth()->user()->name }}</span>
+                    <form action="/logput" method="post" style="display: inline;">
+                        @csrf
+                        <button type="submit" style="background: none; border: none; color: #007bff; cursor: pointer; padding: 0; margin-left: 1rem;">Logout</button>
+                    </form>
+                @endauth
+                @guest
+                    <a href="/login">Login</a>
+                    <a href="/register">Registrasi</a>
+                @endguest
+            </div>   
+        </nav>
+
         @if (session('Success'))
             <div class="alert-success">
                 {{ session('Success') }}
             </div>
         @endif
+        
 
         @yield('content')
     </div>
