@@ -13,12 +13,6 @@ use App\Http\Controllers\TentangSayaController;
 Route::get('/tentangsaya', [TentangSayaController::class, 'index']);
 
 
-
-
-
-Route::get('/', [PostController::class, 'index'])->name('posts.index');
-Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
-
 Route::get('/register', [RegisterController::class, 'create'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
@@ -26,9 +20,11 @@ Route::get('/login', [LoginController::class, 'create'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
 
 
-Route::middleware('auth')->group(function () {
+
+
+Route::middleware(['auth'])->group(function () {
     //menampilkan page form membuat atau menambahkan post (method get)
-    Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+    Route::get('/posts/create', [PostController::class, 'create']);
     //Untuk menyimpan data dari form
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 
@@ -41,3 +37,6 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 });
+
+Route::get('/', [PostController::class, 'index'])->name('posts.index');
+Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
