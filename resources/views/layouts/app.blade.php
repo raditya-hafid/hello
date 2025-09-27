@@ -34,7 +34,7 @@
             <div>
                 @auth
                     <span>Hallo, {{ auth()->user()->name }}</span>
-                    <form action="/logput" method="post" style="display: inline;">
+                    <form action="/logout" method="post" style="display: inline;">
                         @csrf
                         <button type="submit" style="background: none; border: none; color: #007bff; cursor: pointer; padding: 0; margin-left: 1rem;">Logout</button>
                     </form>
