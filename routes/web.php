@@ -12,24 +12,32 @@ use App\Http\Controllers\TentangSayaController;
 
 Route::get('/tentangsaya', [TentangSayaController::class, 'index']);
 
-//menampilkan page form membuat atau menambahkan post (method get)
-Route::get('/posts/create', [PostController::class, 'create']);
-//Untuk menyimpan data dari form
-Route::post('/posts', [PostController::class, 'store']);
 
-// Rute untuk MENAMPILKAN form edit (method GET)
-Route::get('/posts/{post}/edit', [PostController::class, 'edit']);
-// Rute untuk MENYIMPAN PERUBAHAN dari form edit (method PUT)
-Route::put('/posts/{post}', [PostController::class, 'update']);
 
-Route::delete('/posts/{post}', [PostController::class, 'destroy']);
 
-Route::get('/', [PostController::class, 'index']);
-Route::get('posts/{post}', [PostController::class, 'show']);
 
-Route::get('/register', [RegisterController::class, 'create']);
+Route::get('/', [PostController::class, 'index'])->name('posts.index');
+Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
+
+Route::get('/register', [RegisterController::class, 'create'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/login', [LoginController::class, 'create']);
+Route::get('/login', [LoginController::class, 'create'])->name('login');
 Route::post('/login', [LoginController::class, 'store']);
-Route::post('/logout', [LoginController::class, 'destroy']);
+
+
+Route::middleware('auth')->group(function () {
+    //menampilkan page form membuat atau menambahkan post (method get)
+    Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+    //Untuk menyimpan data dari form
+    Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+
+    // Rute untuk MENAMPILKAN form edit (method GET)
+    Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
+    // Rute untuk MENYIMPAN PERUBAHAN dari form edit (method PUT)
+    Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
+
+    Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+    Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+});
