@@ -13,11 +13,15 @@ use App\Http\Controllers\TentangSayaController;
 Route::get('/tentangsaya', [TentangSayaController::class, 'index']);
 
 
-Route::get('/register', [RegisterController::class, 'create'])->name('register');
-Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/login', [LoginController::class, 'create'])->name('login');
-Route::post('/login', [LoginController::class, 'store']);
+
+Route::middleware('guest')->group(function () {
+    Route::get('/register', [RegisterController::class, 'create'])->name('register');
+    Route::post('/register', [RegisterController::class, 'store']);
+
+    Route::get('/login', [LoginController::class, 'create'])->name('login');
+    Route::post('/login', [LoginController::class, 'store']);
+});
 
 
 
