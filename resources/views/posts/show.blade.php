@@ -4,6 +4,16 @@
 @section('content')
     <h1>{{ $post->title }}</h1>
     <p>{{ $post->user->name }}</p>
+
+    <div>
+        <strong>Kategori :</strong>
+        @forelse ($post->categories as $category)
+            <span>{{ $category->name }}</span>
+        @empty
+            <span>Tidak ada kategori</span>
+        @endforelse
+    </div>
+
     <div class="content">
         <p>{{ $post->body }}</p>
     </div>

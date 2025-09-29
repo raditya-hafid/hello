@@ -19,6 +19,14 @@
                 <p style="color: red; font-size: 0.8rem; margin-top: 0.25rem;">{{ $message }}</p>
             @enderror
         </div>
+        <div class="form-group">
+            <label for="categories">Kategori (tahan Ctrl untuk memilih lebih dari satu)</label>
+            <select name="categories[]" id="categories" multiple style="width: 100%; height: 150px;">
+                @foreach ($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+        </div>
         <button type="submit"> Simpan</button>
     </form>
 @endsection
