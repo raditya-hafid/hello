@@ -42,7 +42,12 @@
                 @guest
                     <a href="/login">Login</a>
                     <a href="/register">Registrasi</a>
+                    
                 @endguest
+                @auth
+                    <a href="{{ route('categories.index') }}">Kategori</a>
+                @endauth
+                
             </div>   
         </nav>
 

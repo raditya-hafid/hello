@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -28,7 +29,7 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware(['auth'])->group(function () {
     //menampilkan page form membuat atau menambahkan post (method get)
-    Route::get('/posts/create', [PostController::class, 'create']);
+    Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
     //Untuk menyimpan data dari form
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 
@@ -40,6 +41,8 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
+
+    Route::resource('categories', CategoryController::class);
 });
 
 Route::get('/', [PostController::class, 'index'])->name('posts.index');
