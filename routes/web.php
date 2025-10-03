@@ -42,7 +42,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
-    Route::resource('categories', CategoryController::class);
+    Route::resource('categories', CategoryController::class)->middleware('can:is-admin');
 });
 
 Route::get('/', [PostController::class, 'index'])->name('posts.index');

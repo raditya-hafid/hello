@@ -25,5 +25,9 @@ class AppServiceProvider extends ServiceProvider
         Gate::define('update-post', function (User $user, Post $post){
             return $user -> id === $post ->user_id;
         });
+
+        Gate::define('is-admin', function (User $user){
+            return $user -> role === 'admin';
+        });
     }
 }

@@ -34,6 +34,9 @@
             <div>
                 @auth
                     <span>Hallo, {{ auth()->user()->name }}</span>
+                    @can('is-admin')
+                        <a href="{{ route('categories.index') }}">Kategori</a>   
+                    @endcan
                     <form action="/logout" method="post" style="display: inline;">
                         @csrf
                         <button type="submit" style="background: none; border: none; color: #007bff; cursor: pointer; padding: 0; margin-left: 1rem;">Logout</button>
@@ -44,9 +47,6 @@
                     <a href="/register">Registrasi</a>
                     
                 @endguest
-                @auth
-                    <a href="{{ route('categories.index') }}">Kategori</a>
-                @endauth
                 
             </div>   
         </nav>
